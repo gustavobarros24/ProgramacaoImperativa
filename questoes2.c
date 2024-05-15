@@ -9,6 +9,7 @@ typedef struct lligada {
     struct lligada *prox;
 } *LInt;
 
+
 //1
 int length (LInt l){
     int count = 0;
@@ -126,6 +127,38 @@ void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
     }
     *mx = NULL;
     *Mx = l;
+}
+
+//9
+LInt parteAmeio (LInt *l){
+    int tamanho = length(l)/2;
+    int i= 0;
+    LInt y = (*l);
+    LInt aux = NULL; 
+    for(i=0;i < tamanho;i++){
+        aux = (*l);
+        (*l) = (*l)->prox;
+    }
+    aux->prox = NULL;
+    return y;
+}
+
+//10
+int removeAll (LInt *l, int x){
+    int count = 0;
+    LInt aux = NULL;
+    while(*l != NULL){
+        if((*l) -> valor == x){
+            aux = *l;
+            (*l) = (*l) ->prox;
+            count++;
+            free(aux);
+        }
+        else{
+            l = &(*l)->prox;
+        }
+    }
+    return count;
 }
 
 
